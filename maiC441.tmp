@@ -23,6 +23,3 @@ shape = SubResource("BoxShape3D_a05w5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62513, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="DirectionalLight3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.41171, 0)
