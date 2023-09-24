@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpkhcpkfn2a1s"]
+[gd_scene load_steps=9 format=3 uid="uid://dpkhcpkfn2a1s"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5i0gp"]
 [ext_resource type="PackedScene" uid="uid://bchicofmfg3wr" path="res://player/player.tscn" id="1_ac1gv"]
 
+[sub_resource type="Gradient" id="Gradient_8ox30"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_81upa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jla0d"]
+width = 2048
+height = 2048
+color_ramp = SubResource("Gradient_8ox30")
+noise = SubResource("FastNoiseLite_81upa")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lrki"]
+albedo_texture = SubResource("NoiseTexture2D_jla0d")
+
 [sub_resource type="BoxMesh" id="BoxMesh_lmm5e"]
+material = SubResource("StandardMaterial3D_3lrki")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a05w5"]
 
@@ -11,7 +25,7 @@
 script = ExtResource("1_5i0gp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("BoxMesh_lmm5e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
