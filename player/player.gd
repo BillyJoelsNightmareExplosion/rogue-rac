@@ -42,17 +42,17 @@ func _input(event):
 #        head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func _physics_process(delta):
-    # Add the gravity.
-    if not is_on_floor():
-        velocity.y -= gravity * delta
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 
-    # Handle Jump.
-    if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-        velocity.y = JUMP_VELOCITY
+	# Handle Jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 
-    # Get the input direction and handle the movement/deceleration.
-    # As good practice, you should replace UI actions with custom gameplay actions.
-    var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
     # slows instantly, TODO fix
     speed = RUN_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
