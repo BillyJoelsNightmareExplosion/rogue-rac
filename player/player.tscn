@@ -1,29 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bchicofmfg3wr"]
+[gd_scene load_steps=6 format=3 uid="uid://bchicofmfg3wr"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_k76d7"]
+[ext_resource type="ArrayMesh" uid="uid://f4y2h0qnluoy" path="res://player/test_mesh.obj" id="2_imofi"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mlq5x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to2og"]
+albedo_color = Color(1, 0.0235294, 0.0313726, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3o7ji"]
+[sub_resource type="SphereMesh" id="SphereMesh_d6ht3"]
+material = SubResource("StandardMaterial3D_to2og")
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kjbs6"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s6stq"]
+points = PackedVector3Array(0.415362, 0.548676, -1.27959, -0.5282, -1.58156, -0.429789, -0.407172, -1.19321, -1.3766, 0.5282, -1.56553, -0.42053, -0.5282, 0.17716, 1.65307, 0.5282, -1.56553, 1.63028, 0.5282, 0.166123, 1.63028, -0.407172, 0.548676, -1.3766, -0.5282, -1.58156, 1.65307, 0.415362, -1.19321, -1.3766, -0.5282, 0.17716, -0.429789, 0.5282, 0.166123, -0.42053, 0.415362, 0.548676, -1.3766, -0.407172, 0.548676, -1.27959)
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_k76d7")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_mlq5x")
+[node name="debug_sphere" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_d6ht3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_3o7ji")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.95367, 0.300856, 0, -0.300856, 0.95367, 0, 2.888, 5.76131)
 
-[node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38759, -1.01967)
+[node name="body_collision" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_s6stq")
 
-[node name="HeadMesh" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_kjbs6")
-
-[node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 0.95367, 0.300856, 0, -0.300856, 0.95367, 0, 2.50041, 6.78098)
+[node name="body" type="MeshInstance3D" parent="body_collision"]
+mesh = ExtResource("2_imofi")
+skeleton = NodePath("../..")
